@@ -10,6 +10,7 @@
     tools:context="com.zduo.dotsandboxes.MainActivity">
 
     <com.zduo.dotsandboxes.view.GameView
+        android:id="@+id/gameView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </RelativeLayout>
