@@ -9,7 +9,5 @@ public interface PlayersStateView {
 
     void setPlayerOccupyingBoxesCount(Map<Player, Integer> player_occupyingBoxesCount_map);
 
-    void playerTouched();
-
     void setWinner(Player[] winner);
 }
