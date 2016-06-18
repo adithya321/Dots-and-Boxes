@@ -12,5 +12,74 @@
     <com.zduo.dotsandboxes.view.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/playerNowPointer" />
+
+    <TextView
+        android:id="@+id/player1name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:text="Player 1" />
+
+    <TextView
+        android:id="@+id/player2name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Player 2" />
+
+    <TextView
+        android:id="@+id/player1state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/player1name"
+        android:layout_alignStart="@+id/player1name"
+        android:layout_below="@id/player1name"
+        android:layout_marginTop="5dp"
+        android:text="Waiting" />
+
+    <TextView
+        android:id="@+id/player1occupying"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/player1state"
+        android:layout_alignStart="@+id/player1state"
+        android:layout_below="@+id/player1state"
+        android:layout_marginTop="5dp"
+        android:text="Occupying 0" />
+
+    <TextView
+        android:id="@+id/player2state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/player2name"
+        android:layout_alignRight="@id/player2name"
+        android:layout_below="@id/player2name"
+        android:layout_marginTop="5dp"
+        android:text="Waiting" />
+
+    <TextView
+        android:id="@+id/player2occupying"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/player1occupying"
+        android:layout_alignBottom="@+id/player1occupying"
+        android:layout_alignEnd="@+id/player2state"
+        android:layout_alignRight="@+id/player2state"
+        android:layout_marginTop="5dp"
+        android:text="Occupying 0" />
+
+    <ImageView
+        android:id="@+id/playerNowPointer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/player1name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/a1" />
 </RelativeLayout>
