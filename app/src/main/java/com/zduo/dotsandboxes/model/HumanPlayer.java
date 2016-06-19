@@ -33,5 +33,4 @@ public class HumanPlayer extends Player {
     public Line move() {
         return getInput();
     }
-
 }

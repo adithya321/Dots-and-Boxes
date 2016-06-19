@@ -1,7 +1,5 @@
 package com.zduo.dotsandboxes.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 
 public class Game extends Observable {
@@ -14,30 +12,7 @@ public class Game extends Observable {
     private boolean[][] verticalLines;
     private Line latestLine;
 
-    protected Game(Game game) {
-        this.players = game.players;
-        this.currentPlayerIndex = game.currentPlayerIndex;
-        this.width = game.width;
-        this.height = game.height;
-        this.occupied = new Player[height][width];
-        for (int i = 0; i < height; i++) {
-            System.arraycopy(game.occupied[i], 0, this.occupied[i], 0, width);
-        }
-        this.horizontalLines = new boolean[height + 1][width];
-        for (int i = 0; i < height + 1; i++) {
-            System.arraycopy(game.horizontalLines[i], 0, this.horizontalLines[i], 0, width);
-        }
-        this.verticalLines = new boolean[height][width + 1];
-        for (int i = 0; i < height; i++) {
-            System.arraycopy(game.verticalLines[i], 0, this.verticalLines[i], 0, width + 1);
-        }
-    }
-
-    public Game(int width, int height, Player firstMover, Player... players) {
-        assertGameBoardSizeRight(width, height);
-        assertPlayersNotNull(players);
-        assertPlayerCountRight(players);
-
+    public Game(int width, int height, Player[] players) {
         this.width = width;
         this.height = height;
         this.players = players;
@@ -47,17 +22,7 @@ public class Game extends Observable {
         verticalLines = new boolean[height][width + 1];
 
         addPlayersToGame(players);
-        initFirstMover(firstMover, players);
-    }
-
-    private void assertPlayerCountRight(Player[] players) {
-        if (players.length == 0)
-            throw new IllegalArgumentException("No Player");
-    }
-
-    private void assertGameBoardSizeRight(float weigh, float height) {
-        if (weigh < 1 || height < 1)
-            throw new IllegalArgumentException("Size Too Small");
+        currentPlayerIndex = 0;
     }
 
     public Player[] getPlayers() {
@@ -74,22 +39,6 @@ public class Game extends Observable {
 
     public Line getLatestLine() {
         return latestLine;
-    }
-
-    private void assertPlayersNotNull(Player[] players) {
-        for (Player player : players) {
-            if (player == null) {
-                throw new IllegalArgumentException("Player Is Null");
-            }
-        }
-    }
-
-    private void initFirstMover(Player firstMover, Player[] players) {
-        for (int i = 0; i < players.length; i++) {
-            if (players[i] == firstMover) {
-                currentPlayerIndex = i;
-            }
-        }
     }
 
     private void addPlayersToGame(Player[] players) {
@@ -240,7 +189,7 @@ public class Game extends Observable {
         return true;
     }
 
-    public Player[] getWinners() {
+    public Player getWinner() {
         if (!isGameFinished()) {
             return null;
         }
@@ -250,18 +199,9 @@ public class Game extends Observable {
             playersOccupyingBoxCount[i] = getPlayerOccupyingBoxCount(players[i]);
         }
 
-        int maxOccupyingCount = 0;
-        for (int thisPlayerOccupyingBoxCount : playersOccupyingBoxCount) {
-            maxOccupyingCount = Math.max(maxOccupyingCount, thisPlayerOccupyingBoxCount);
-        }
-
-        List<Player> winners = new ArrayList<>();
-        for (int i = 0; i < players.length; i++) {
-            if (playersOccupyingBoxCount[i] == maxOccupyingCount)
-                winners.add(players[i]);
-        }
-
-        return winners.toArray(new Player[winners.size()]);
+        if (playersOccupyingBoxCount[0] > playersOccupyingBoxCount[1])
+            return players[0];
+        else
+            return players[1];
     }
-
 }

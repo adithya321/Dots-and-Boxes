@@ -31,15 +31,6 @@ public class Line {
         Line line = (Line) o;
 
         return row == line.row && column == line.column && direction == line.direction;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = direction != null ? direction.hashCode() : 0;
-        result = 31 * result + row;
-        result = 31 * result + column;
-        return result;
     }
 
     @Override

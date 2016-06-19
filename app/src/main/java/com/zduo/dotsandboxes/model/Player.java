@@ -8,7 +8,7 @@ public abstract class Player {
         this.name = name;
     }
 
-    public static int indexIn(Player player, Player... players) {
+    public static int indexIn(Player player, Player[] players) {
         for (int i = 0; i < players.length; i++) {
             if (player == players[i])
                 return i;
@@ -18,10 +18,6 @@ public abstract class Player {
 
     public abstract Line move();
 
-    public Game getGame() {
-        return game;
-    }
-
     public void addToGame(Game game) {
         this.game = game;
     }
@@ -29,6 +25,4 @@ public abstract class Player {
     public String getName() {
         return name;
     }
-
-
 }

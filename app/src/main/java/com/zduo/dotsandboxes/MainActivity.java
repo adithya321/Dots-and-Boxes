@@ -45,15 +45,9 @@ public class MainActivity extends AppCompatActivity implements PlayersStateView 
         }.start();
     }
 
-
-    private Player[] initPlayers() {
-        return new Player[]{new HumanPlayer("Player1"), new HumanPlayer("Player2")};
-    }
-
     private void startGame() {
-        players = initPlayers();
-        currentPlayer = players[0];
-        gameView.startGame(currentPlayer, players);
+        players = new Player[]{new HumanPlayer("Player1"), new HumanPlayer("Player2")};
+        gameView.startGame(players);
         updateState();
     }
 
@@ -77,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements PlayersStateView 
     }
 
     @Override
-    public void setPlayerNow(Player player) {
+    public void setCurrentPlayer(Player player) {
         currentPlayer = player;
         updateState();
     }
@@ -90,22 +84,16 @@ public class MainActivity extends AppCompatActivity implements PlayersStateView 
     }
 
     @Override
-    public void setWinner(final Player[] winner) {
+    public void setWinner(final Player winner) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                String winnerNames = "";
-                for (Player player : winner) {
-                    winnerNames += player.getName();
-                    winnerNames += " ";
-                }
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Dots And Boxes")
-                        .setMessage(winnerNames + "Win!")
-                        .setPositiveButton("Confirm",
+                        .setMessage(winner.getName() + " Wins!")
+                        .setPositiveButton("Restart",
                                 new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,
-                                                        int which) {
+                                    public void onClick(DialogInterface dialog, int which) {
                                         recreate();
                                     }
                                 }).show();
