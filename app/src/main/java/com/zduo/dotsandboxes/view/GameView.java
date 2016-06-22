@@ -91,7 +91,10 @@ public class GameView extends View implements Observer {
                 if (horizontal.equals(game.getLatestLine())) {
                     paint.setColor(0xFFFF7700);
                 } else if (game.isLineOccupied(horizontal)) {
-                    paint.setColor(0xFF000000);
+                    if (game.getLineOccupier(horizontal) == 1)
+                        paint.setColor(playerColors[0]);
+                    else
+                        paint.setColor(playerColors[1]);
                 } else {
                     paint.setColor(0xFFFFFFFF);
                 }
@@ -103,7 +106,10 @@ public class GameView extends View implements Observer {
                 if (vertical.equals(game.getLatestLine())) {
                     paint.setColor(0xFFFF7700);
                 } else if (game.isLineOccupied(vertical)) {
-                    paint.setColor(0xFF000000);
+                    if (game.getLineOccupier(vertical) == 1)
+                        paint.setColor(playerColors[0]);
+                    else
+                        paint.setColor(playerColors[1]);
                 } else {
                     paint.setColor(0xFFFFFFFF);
                 }

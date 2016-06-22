@@ -8,8 +8,8 @@ public class Game extends Observable {
     private int width;
     private int height;
     private Player[][] occupied;
-    private boolean[][] horizontalLines;
-    private boolean[][] verticalLines;
+    private int[][] horizontalLines;
+    private int[][] verticalLines;
     private Line latestLine;
 
     public Game(int width, int height, Player[] players) {
@@ -18,8 +18,8 @@ public class Game extends Observable {
         this.players = players;
 
         occupied = new Player[height][width];
-        horizontalLines = new boolean[height + 1][width];
-        verticalLines = new boolean[height][width + 1];
+        horizontalLines = new int[height + 1][width];
+        verticalLines = new int[height][width + 1];
 
         addPlayersToGame(players);
         currentPlayerIndex = 0;
@@ -78,6 +78,18 @@ public class Game extends Observable {
     public boolean isLineOccupied(Line line) {
         switch (line.direction()) {
             case HORIZONTAL:
+                return (horizontalLines[line.row()][line.column()] == 1
+                        || horizontalLines[line.row()][line.column()] == 2);
+            case VERTICAL:
+                return (verticalLines[line.row()][line.column()] == 1
+                        || verticalLines[line.row()][line.column()] == 2);
+        }
+        throw new IllegalArgumentException(line.direction().toString());
+    }
+
+    public int getLineOccupier(Line line) {
+        switch (line.direction()) {
+            case HORIZONTAL:
                 return horizontalLines[line.row()][line.column()];
             case VERTICAL:
                 return verticalLines[line.row()][line.column()];
@@ -111,10 +123,10 @@ public class Game extends Observable {
     private void setLineOccupied(Line line) {
         switch (line.direction()) {
             case HORIZONTAL:
-                horizontalLines[line.row()][line.column()] = true;
+                horizontalLines[line.row()][line.column()] = currentPlayerIndex + 1;
                 break;
             case VERTICAL:
-                verticalLines[line.row()][line.column()] = true;
+                verticalLines[line.row()][line.column()] = currentPlayerIndex + 1;
                 break;
         }
     }
