@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.zduo.dotsandboxes.ai.RandomAIPlayer;
 import com.zduo.dotsandboxes.model.HumanPlayer;
 import com.zduo.dotsandboxes.model.Player;
 import com.zduo.dotsandboxes.view.GameView;
@@ -37,16 +38,11 @@ public class MainActivity extends AppCompatActivity implements PlayersStateView 
         player2occupying = (TextView) findViewById(R.id.player2occupying);
         currentPlayerPointer = (ImageView) findViewById(R.id.playerNowPointer);
 
-        new Thread() {
-            @Override
-            public void run() {
-                startGame();
-            }
-        }.start();
+        startGame();
     }
 
     private void startGame() {
-        players = new Player[]{new HumanPlayer("Player1"), new HumanPlayer("Player2")};
+        players = new Player[]{new HumanPlayer("Human"), new RandomAIPlayer("Computer")};
         gameView.startGame(players);
         updateState();
     }
@@ -59,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements PlayersStateView 
                     player1state.setText("Thinking");
                     player2state.setText("Waiting");
                     currentPlayerPointer.setImageResource(R.drawable.a1);
-                } else {
+                } else if (currentPlayer == players[1]) {
                     player2state.setText("Thinking");
                     player1state.setText("Waiting");
                     currentPlayerPointer.setImageResource(R.drawable.a2);
@@ -91,12 +87,16 @@ public class MainActivity extends AppCompatActivity implements PlayersStateView 
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Dots And Boxes")
                         .setMessage(winner.getName() + " Wins!")
-                        .setPositiveButton("Restart",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        recreate();
-                                    }
-                                }).show();
+                        .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                recreate();
+                            }
+                        })
+                        .setNeutralButton("Dismiss", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).show();
             }
         });
     }

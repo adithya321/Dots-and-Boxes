@@ -26,21 +26,24 @@
                 android:id="@+id/player1name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Player 1" />
+                android:text="Human"
+                android:textColor="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/player1state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Waiting" />
+                android:text="Waiting"
+                android:textColor="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/player1occupying"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Occupying 0" />
+                android:text="Occupying 0"
+                android:textColor="@color/colorPrimary" />
         </LinearLayout>
 
         <ImageView
@@ -62,7 +65,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="Player 2" />
+                android:text="Computer"
+                android:textColor="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/player2state"
@@ -70,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="end"
-                android:text="Waiting" />
+                android:text="Waiting"
+                android:textColor="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/player2occupying"
@@ -78,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="end"
-                android:text="Occupying 0" />
+                android:text="Occupying 0"
+                android:textColor="@color/colorAccent" />
         </LinearLayout>
     </LinearLayout>
 

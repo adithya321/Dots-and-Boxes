@@ -18,6 +18,10 @@ public abstract class Player {
 
     public abstract Line move();
 
+    public Game getGame() {
+        return game;
+    }
+
     public void addToGame(Game game) {
         this.game = game;
     }
