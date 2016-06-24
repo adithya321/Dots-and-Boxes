@@ -1,85 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.zduo.dotsandboxes.MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/player1name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Human"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/player1state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Waiting"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/player1occupying"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Occupying 0"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/playerNowPointer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/a1" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/player2name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="Computer"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/player2state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="end"
+                android:text="Waiting"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/player2occupying"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="end"
+                android:text="Occupying 0"
+                android:textColor="@color/colorAccent" />
+        </LinearLayout>
+    </LinearLayout>
+
     <com.zduo.dotsandboxes.view.GameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/playerNowPointer" />
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1" />
 
     <TextView
-        android:id="@+id/player1name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:text="Player 1" />
-
-    <TextView
-        android:id="@+id/player2name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="Player 2" />
-
-    <TextView
-        android:id="@+id/player1state"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/player1name"
-        android:layout_alignStart="@+id/player1name"
-        android:layout_below="@id/player1name"
-        android:layout_marginTop="5dp"
-        android:text="Waiting" />
-
-    <TextView
-        android:id="@+id/player1occupying"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/player1state"
-        android:layout_alignStart="@+id/player1state"
-        android:layout_below="@+id/player1state"
-        android:layout_marginTop="5dp"
-        android:text="Occupying 0" />
-
-    <TextView
-        android:id="@+id/player2state"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/player2name"
-        android:layout_alignRight="@id/player2name"
-        android:layout_below="@id/player2name"
-        android:layout_marginTop="5dp"
-        android:text="Waiting" />
-
-    <TextView
-        android:id="@+id/player2occupying"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/player1occupying"
-        android:layout_alignBottom="@+id/player1occupying"
-        android:layout_alignEnd="@+id/player2state"
-        android:layout_alignRight="@+id/player2state"
-        android:layout_marginTop="5dp"
-        android:text="Occupying 0" />
-
-    <ImageView
-        android:id="@+id/playerNowPointer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/player1name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dp"
-        android:src="@drawable/a1" />
-</RelativeLayout>
+        android:layout_gravity="center"
+        android:text="By zDuo" />
+</LinearLayout>

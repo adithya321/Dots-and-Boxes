@@ -2,13 +2,13 @@ package com.zduo.dotsandboxes.model;
 
 public abstract class Player {
     protected final String name;
-    protected Game game;
+    protected Graph game;
 
     public Player(String name) {
         this.name = name;
     }
 
-    public static int indexIn(Player player, Player... players) {
+    public static int indexIn(Player player, Player[] players) {
         for (int i = 0; i < players.length; i++) {
             if (player == players[i])
                 return i;
@@ -18,17 +18,15 @@ public abstract class Player {
 
     public abstract Line move();
 
-    public Game getGame() {
+    public Graph getGame() {
         return game;
     }
 
-    public void addToGame(Game game) {
+    public void addToGame(Graph game) {
         this.game = game;
     }
 
     public String getName() {
         return name;
     }
-
-
 }
