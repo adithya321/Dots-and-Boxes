@@ -2,7 +2,7 @@ package com.zduo.dotsandboxes.model;
 
 import java.util.Observable;
 
-public class Game extends Observable {
+public class Graph extends Observable {
     private Player[] players;
     private int currentPlayerIndex;
     private int width;
@@ -12,7 +12,7 @@ public class Game extends Observable {
     private int[][] verticalLines;
     private Line latestLine;
 
-    public Game(int width, int height, Player[] players) {
+    public Graph(int width, int height, Player[] players) {
         this.width = width;
         this.height = height;
         this.players = players;

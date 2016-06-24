@@ -2,7 +2,7 @@ package com.zduo.dotsandboxes.model;
 
 public abstract class Player {
     protected final String name;
-    protected Game game;
+    protected Graph game;
 
     public Player(String name) {
         this.name = name;
@@ -18,11 +18,11 @@ public abstract class Player {
 
     public abstract Line move();
 
-    public Game getGame() {
+    public Graph getGame() {
         return game;
     }
 
-    public void addToGame(Game game) {
+    public void addToGame(Graph game) {
         this.game = game;
     }
 

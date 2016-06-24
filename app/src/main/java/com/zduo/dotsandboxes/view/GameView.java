@@ -5,12 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.zduo.dotsandboxes.R;
 import com.zduo.dotsandboxes.model.Direction;
-import com.zduo.dotsandboxes.model.Game;
+import com.zduo.dotsandboxes.model.Graph;
 import com.zduo.dotsandboxes.model.HumanPlayer;
 import com.zduo.dotsandboxes.model.Line;
 import com.zduo.dotsandboxes.model.Player;
@@ -31,7 +32,7 @@ public class GameView extends View implements Observer {
     protected static final float add6 = (float) 9 / 824;
 
     protected final int[] playerColors;
-    protected Game game;
+    protected Graph game;
     protected Line move;
     protected Paint paint;
     protected PlayersStateView playersState;
@@ -58,7 +59,7 @@ public class GameView extends View implements Observer {
     }
 
     public void startGame(Player[] players) {
-        game = new Game(5, 5, players);
+        game = new Graph(5, 5, players);
         game.addObserver(this);
         new Thread() {
             @Override
@@ -183,7 +184,11 @@ public class GameView extends View implements Observer {
             else
                 direction = Direction.VERTICAL;
             move = new Line(direction, a, b);
-            ((HumanPlayer) game.currentPlayer()).add(move);
+            try {
+                ((HumanPlayer) game.currentPlayer()).add(move);
+            } catch (Exception e) {
+                Log.e("GameView", e.toString());
+            }
         }
     }
 
